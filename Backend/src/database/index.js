@@ -12,7 +12,7 @@ mongoose.connection.on("connected", () => console.log("connected"));
       });
       
   } catch (error) {
-    console.log("Express Not connected, Error: ", error);
+    console.log("DB Not connected, Error: ", error);
   }
 };
 
