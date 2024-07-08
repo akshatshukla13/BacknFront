@@ -1,17 +1,18 @@
 import mongoose from "mongoose";
 
 const connectDB = async () => {
-  //mongoose.connect('mongodb://127.0.0.1:27017/mongoose_test');
+  //mongodb+srv://vijaynarayanshukla9:BaupnSXmTK3sJQ3E@cluster0.maavplo.mongodb.net/
   try {
-    mongoose.connection.on("connected", () => console.log("connected"));
+mongoose.connection.on("connected", () => console.log("connected"));
 
     await mongoose
       .connect(`${process.env.MONGODB_URI}/${process.env.DB_NAME}`)
       .then((resp) => {
         console.log(`connected at ${resp.connection.host}`);
       });
+      
   } catch (error) {
-    console.log("Express Not connected, Error: ", err);
+    console.log("Express Not connected, Error: ", error);
   }
 };
 
