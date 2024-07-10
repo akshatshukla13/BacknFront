@@ -25,10 +25,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 import userRouter from "./routes/user.routes.js";
 import videoRouter from './routes/video.routes.js'
+import tweetRouter from './routes/tweet.routes.js'
 
 
 app.use("/users", userRouter);
 
 app.use("/videos", videoRouter);
+
+app.use("/tweet", tweetRouter);
 
 export { app };
