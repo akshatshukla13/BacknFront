@@ -23,9 +23,12 @@ app.use(CookieParser());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-import userRouter from "./routes/user.router.js";
+import userRouter from "./routes/user.routes.js";
+import videoRouter from './routes/video.routes.js'
 
 
 app.use("/users", userRouter);
+
+app.use("/videos", videoRouter);
 
 export { app };
