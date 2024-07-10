@@ -79,20 +79,137 @@ const publishAVideo = asyncHandler(async (req, res) => {
 const getVideoById = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: get video by id
+  if (!videoId) {
+    throw new ApiError(402, "VideoId required");
+  }
+
+  const video = await Video.findById(videoId);
+
+  if (!video) {
+    throw new ApiError(401, "Invalid Video Id");
+  }
+
+  return res
+    .status(201)
+    .json(new ApiResponse(200, video, "Video fetched Successfully"));
 });
 
 const updateVideo = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: update video details like title, description, thumbnail
+  if (!videoId) {
+    throw new ApiError(402, "VideoId required");
+  }
+
+  const { title, description } = req.body;
+  const video = await Video.findById(videoId);
+
+  if (!video) {
+    throw new ApiError(401, "Invalid Video Id");
+  }
+
+  if (video.owner.toString() != req.user._id.toString()) {
+    // console.log(video.owner , "and" , req.user._id);
+    throw new ApiError(401, "Invalid User updating video");
+  }
+
+  if (title) {
+    video.title = title;
+  }
+
+  if (description) {
+    video.discription = description;
+  }
+
+  const thumbnailLocalPath = req.file?.path;
+
+  if (!thumbnailLocalPath) {
+    throw new ApiError(401, "No thumbnail found");
+  }
+
+  const thumbnail = await uploadOnCloudinary(thumbnailLocalPath);
+
+  if (!thumbnail) {
+    throw new ApiError(401, "No thumbnail url found");
+  }
+
+  // console.log("thumbnail ",thumbnail.url);
+
+  video.thumbnail = thumbnail.url;
+
+  const updatedVideo = await video.save({ validateBeforeSave: false });
+
+  const updatedVideoDetails = await Video.findById(updatedVideo._id);
+
+  if (!updatedVideoDetails) {
+    throw new ApiError(401, "error updating details");
+  }
+
+  res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        updatedVideoDetails,
+        "video details updated successfully"
+      )
+    );
 });
 
 const deleteVideo = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: delete video
+  if (!videoId) {
+    throw new ApiError(402, "VideoId required");
+  }
+
+  const video = await Video.findById(videoId);
+
+  if (!video) {
+    throw new ApiError(401, "Invalid Video Id");
+  }
+
+  if (video.owner.toString() != req.user._id.toString()) {
+    // console.log(video.owner , "and" , req.user._id);
+    throw new ApiError(401, "Invalid User updating video");
+  }
+
+  const result = await Video.deleteOne({ _id: videoId });
+
+  if (!result.acknowledged) {
+    throw new ApiError(401, "Video not deleted");
+  }
+
+  res
+    .status(201)
+    .json(new ApiResponse(200, result, "video deleted successfully"));
 });
 
 const togglePublishStatus = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
+
+  if (!videoId) {
+    throw new ApiError(402, "VideoId required");
+  }
+
+  const video = await Video.findById(videoId);
+
+  if (!video) {
+    throw new ApiError(401, "Invalid Video Id");
+  }
+
+  if (video.owner.toString() != req.user._id.toString()) {
+    // console.log(video.owner , "and" , req.user._id);
+    throw new ApiError(401, "Invalid User updating video");
+  }
+
+  video.isPublished = !video.isPublished;
+
+  await video.save({ validateBeforeSave: false });
+
+  res
+    .status(201)
+    .json(new ApiResponse(200, video, "publish toggle successfully"));
 });
 
 export {
