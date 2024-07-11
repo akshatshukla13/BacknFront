@@ -3,7 +3,7 @@ import { Tweet } from "../Models/tweet.model.js";
 import { User } from "../Models/user.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 const createTweet = asyncHandler(async (req, res) => {
   //TODO: create tweet

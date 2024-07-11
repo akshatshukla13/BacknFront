@@ -20,15 +20,15 @@ app.use(express.static("public"));
 
 app.use(CookieParser());
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 import userRouter from "./routes/user.routes.js";
-import videoRouter from './routes/video.routes.js'
-import tweetRouter from './routes/tweet.routes.js'
-import healthRouter from './routes/healthcheck.routes.js'
-import commentRoute from './routes/comment.routes.js'
-
+import videoRouter from "./routes/video.routes.js";
+import tweetRouter from "./routes/tweet.routes.js";
+import healthRouter from "./routes/healthcheck.routes.js";
+import commentRoute from "./routes/comment.routes.js";
+import playlistRoute from "./routes/playlist.routes.js";
 
 app.use("/users", userRouter);
 
@@ -39,5 +39,7 @@ app.use("/tweet", tweetRouter);
 app.use("/health", healthRouter);
 
 app.use("/comment", commentRoute);
+
+app.use("/playlist", playlistRoute);
 
 export { app };

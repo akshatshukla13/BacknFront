@@ -2,7 +2,7 @@ import mongoose, { isValidObjectId } from "mongoose";
 import { Comment } from "../Models/comment.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { Video } from "../Models/video.model.js";
 
 const getVideoComments = asyncHandler(async (req, res) => {
