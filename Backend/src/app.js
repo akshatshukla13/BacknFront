@@ -26,6 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 import userRouter from "./routes/user.routes.js";
 import videoRouter from './routes/video.routes.js'
 import tweetRouter from './routes/tweet.routes.js'
+import healthRouter from './routes/healthcheck.routes.js'
+import commentRoute from './routes/comment.routes.js'
 
 
 app.use("/users", userRouter);
@@ -33,5 +35,9 @@ app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 
 app.use("/tweet", tweetRouter);
+
+app.use("/health", healthRouter);
+
+app.use("/comment", commentRoute);
 
 export { app };
