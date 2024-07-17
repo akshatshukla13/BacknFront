@@ -1,9 +1,6 @@
-import React from "react";
-import ChannelPlayListVideosPage from "./ChannelPlayListVideosPage";
-import ChannelTweetPage from "./ChannelTweetPage";
-import ChannelSubscribedPage from "./ChannelSubscribedPage";
+import React from 'react'
 
-function ChannelVideoListPage() {
+function MyChannelVideoPage() {
   return (
     <>
 
@@ -238,7 +235,7 @@ function ChannelVideoListPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default ChannelVideoListPage;
+export default MyChannelVideoPage

@@ -6,7 +6,7 @@ function AuthLogin() {
       <div class="mx-auto my-8 flex w-full max-w-sm flex-col px-4">
         <div class="mx-auto inline-block w-16">
           <svg
-            // style="width:100%"
+            // style={{ width: "100%" }}
             style={{ width: '100%' }}
             viewBox="0 0 63 64"
             fill="none"

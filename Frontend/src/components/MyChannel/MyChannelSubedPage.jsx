@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-function ChannelSubscribedPage() {
+function MyChannelSubedPage() {
   return (
     <>
       
@@ -604,7 +604,7 @@ function ChannelSubscribedPage() {
                   </div>
                 </div>
               </div></>
-  );
+  )
 }
 
-export default ChannelSubscribedPage;
+export default MyChannelSubedPage

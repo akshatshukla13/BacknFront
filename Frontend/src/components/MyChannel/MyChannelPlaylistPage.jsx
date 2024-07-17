@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-function ChannelPlayListVideosPage() {
+function MyChannelPlaylistPage() {
   return (
     <>
               <div class="grid gap-4 pt-2 sm:grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))]">
@@ -153,7 +153,7 @@ function ChannelPlayListVideosPage() {
                 </div>
               </div>
     </>
-  );
+  )
 }
 
-export default ChannelPlayListVideosPage;
+export default MyChannelPlaylistPage

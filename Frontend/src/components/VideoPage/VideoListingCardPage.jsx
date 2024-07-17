@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function VideoListingCardPage() {
+  const navigate = useNavigate();
   return (
     <>
       <link
@@ -110,19 +112,26 @@ function VideoListingCardPage() {
       />
       <section class="bg-[#121212] text-white w-full pb-[70px] sm:ml-[70px] sm:pb-0 lg:ml-0">
         <div class="  grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4 p-4">
+
+          {/* imp video div */}
           <div class=" w-full">
+
             <div class="relative mb-2 w-full pt-[56%]">
-              <div class="absolute inset-0">
+
+              <div onClick={() => { navigate('/video/123') }} class="absolute inset-0">
                 <img
                   src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="JavaScript Fundamentals: Variables and Data Types"
                   class="h-full w-full"
                 />
               </div>
+
               <span class="absolute bottom-1 right-1 inline-block rounded bg-black px-1.5 text-sm">
                 20:45
               </span>
             </div>
+
+
             <div class="flex gap-x-2">
               <div class="h-10 w-10 shrink-0">
                 <img
@@ -141,7 +150,11 @@ function VideoListingCardPage() {
                 <p class="text-sm text-gray-200">Code Master</p>
               </div>
             </div>
+
+
           </div>
+          {/* imp video div end */}
+
           <div class="w-full">
             <div class="relative mb-2 w-full pt-[56%]">
               <div class="absolute inset-0">
@@ -484,9 +497,7 @@ function VideoListingCardPage() {
                 />
               </div>
               <div class="w-full">
-                <h6 class="mb-1 font-semibold">
-                  Introduction to React Native
-                </h6>
+                <h6 class="mb-1 font-semibold">Introduction to React Native</h6>
                 <p class="flex text-sm text-gray-200">
                   10.9k Views · 8 hours ago
                 </p>
