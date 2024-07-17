@@ -1,13 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { isLogedIn } from "@/features/MyChannel/visibilitySlice";
+import { useNavigate } from "react-router-dom";
 
 function AuthLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios({
+        method: "post",
+        url: "http://localhost:4500/users/login",
+        data: {
+          email: email,
+          password: password,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Login successful:", response.data);
+      dispatch(isLogedIn());
+      navigate("/home2");
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+  };
+
   return (
     <div class="h-screen overflow-y-auto bg-[#121212] text-white">
       <div class="mx-auto my-8 flex w-full max-w-sm flex-col px-4">
         <div class="mx-auto inline-block w-16">
           <svg
             // style={{ width: "100%" }}
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
             viewBox="0 0 63 64"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -63,16 +96,31 @@ function AuthLogin() {
         <div class="mb-6 w-full text-center text-2xl font-semibold uppercase">
           Play
         </div>
-        <label for="email" class="mb-1 inline-block text-gray-300">
-          Email*
-        </label>
+
         <input
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
           id="email"
           type="email"
           placeholder="Enter your email"
           class="mb-4 rounded-lg border bg-transparent px-3 py-2"
         />
-        <button class="bg-[#ae7aff] px-4 py-3 text-black">
+        <input
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          class="mb-4 rounded-lg border bg-transparent px-3 py-2"
+        />
+        <button
+          onClick={handleSubmit}
+          class="bg-[#ae7aff] px-4 py-3 text-black"
+        >
           Sign in with Email
         </button>
       </div>

@@ -31,7 +31,7 @@ router.route("/register").get(
   registerUser
 );
 
-router.route("/login").get(upload.fields([]), loginUser);
+router.route("/login").post(upload.fields([]), loginUser);
 
 router.route("/logout").post(verifyJWT, logoutUser);
 

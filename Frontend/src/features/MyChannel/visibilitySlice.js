@@ -2,6 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
   visibility: false,
+  logedin: false,
 };
 
 export const visSlice = createSlice({
@@ -11,8 +12,11 @@ export const visSlice = createSlice({
     toggleVis: (state, action) => {
       state.visibility = !state.visibility;
     },
+    isLogedIn: (state, action) => {
+      state.logedin = !state.logedin;
+    },
   },
 });
 
-export const { toggleVis } = visSlice.actions;
+export const { toggleVis, isLogedIn } = visSlice.actions;
 export default visSlice.reducer;

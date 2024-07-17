@@ -25,6 +25,7 @@ import MyChannelSubedPage from "./components/MyChannel/MyChannelSubedPage.jsx";
 import UploadVideoPopout from "./components/MyChannel/UploadPopOut/UploadVideoPopout.jsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
+import EditPersonalPageInfo from "./components/MyChannel/EditMyChannel/EditPersonalPageInfo.jsx";
 
 const router = createBrowserRouter([
   {
@@ -166,7 +167,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/x",
-    element: <UploadVideoPopout />,
+    element: <EditPersonalPageInfo />,
   },
 ]);
 
