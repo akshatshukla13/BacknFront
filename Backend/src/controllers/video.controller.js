@@ -7,8 +7,17 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const getAllVideos = asyncHandler(async (req, res) => {
-  const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query;
+  // const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query;
   //TODO: get all videos based on query, sort, pagination
+  const allVideo = await Video.find({})
+
+  if(!allVideo){
+    throw new ApiError(401, "not fetched properly");
+  }
+
+  return res
+    .status(201)
+    .json(new ApiResponse(200, allVideo, "Video fetched Successfully"));
 });
 
 const publishAVideo = asyncHandler(async (req, res) => {

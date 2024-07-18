@@ -6,7 +6,7 @@ import { toggleVis } from "@/features/MyChannel/visibilitySlice.js";
 
 function MyChannel({ Compo }) {
   const dispatch = useDispatch();
-  const visible = useSelector((state) => state.visibility);
+  const visible = useSelector((state) => state.vis.visibility);
 
   // Step 3: Create a function to toggle visibility
   const changeVisibility = () => {

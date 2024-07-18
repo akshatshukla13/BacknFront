@@ -17,7 +17,7 @@ function AuthLogin() {
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:4500/users/login",
+        url: "/api/users/login/",
         data: {
           email: email,
           password: password,

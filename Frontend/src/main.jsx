@@ -26,6 +26,7 @@ import UploadVideoPopout from "./components/MyChannel/UploadPopOut/UploadVideoPo
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
 import EditPersonalPageInfo from "./components/MyChannel/EditMyChannel/EditPersonalPageInfo.jsx";
+import Terms from "./components/ExtrasPage/Terms.jsx";
 
 const router = createBrowserRouter([
   {
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
   {
     path: "/x",
     element: <EditPersonalPageInfo />,
+  },
+  {
+    path: "/abc",
+    element: <Terms />,
   },
 ]);
 
