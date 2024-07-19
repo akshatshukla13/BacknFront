@@ -11,7 +11,7 @@ export const fetchUserChannelDetails = createAsyncThunk(
     try {
       dispatch(fetchUserDetails());
       const userName = useSelector((state) => state.user.data.userName);
-      const response = await axios.get("/api/users/c/" + userName);
+      const response = await axios.get("https://aktube.vercel.app/users/c/" + userName);
 
       return response.data.data;
     } catch (error) {

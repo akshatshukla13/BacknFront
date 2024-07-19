@@ -17,7 +17,7 @@ function Header() {
 
     (async () => {
       try {
-        const response = await axios.get("/api/users/current-user/");
+        const response = await axios.get("https://aktube.vercel.app/users/current-user/");
         console.log(response.data);
         setUserAvatar(response.data.data.avatar)
         setUserName(response.data.data.userName)
@@ -35,7 +35,7 @@ function Header() {
 
       const response = await axios({
         method: "post",
-        url: "/api/users/logout/",
+        url: "https://aktube.vercel.app/users/logout/",
       });
 
       console.log(response.data);

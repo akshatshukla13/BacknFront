@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchUserDetails = createAsyncThunk(
   "fetchUserDetails",
   async () => {
-    const response = await axios.get("/api/users/current-user/");
+    const response = await axios.get("https://aktube.vercel.app/users/current-user/");
     return response.data.data;
   }
 );

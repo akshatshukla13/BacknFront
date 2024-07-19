@@ -18,7 +18,7 @@ function AuthLogin() {
     try {
       const response = await axios({
         method: "post",
-        url: "/api/users/login/",
+        url: "https://aktube.vercel.app/users/login/",
         data: {
           email: email,
           password: password,

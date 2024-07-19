@@ -11,7 +11,7 @@ function VideoDetailPage() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/videos/" + id);
+        const response = await axios.get("https://aktube.vercel.app/videos/" + id);
         const data = await response.data.data;
         setVideoData(data);
         console.log(data);
@@ -24,7 +24,7 @@ function VideoDetailPage() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/videos/");
+        const response = await axios.get("https://aktube.vercel.app/videos/");
         const data = await response.data.data;
         setSideVideoData(data);
         console.log(data);

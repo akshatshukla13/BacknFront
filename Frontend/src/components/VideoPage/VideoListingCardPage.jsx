@@ -9,7 +9,7 @@ function VideoListingCardPage() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/videos/");
+        const response = await axios.get("https://aktube.vercel.app/videos/");
         const data = await response.data.data
         setVideoData(data)
         
