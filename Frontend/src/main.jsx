@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { createBrowserRouter, Route, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, Route, RouterProvider, useParams } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import { Login } from "./components/Login.jsx";
 import AuthLogin from "./components/AuthPages/AuthLogin.jsx";
@@ -27,22 +27,15 @@ import { Provider } from "react-redux";
 import { store } from "./app/store.js";
 import EditPersonalPageInfo from "./components/MyChannel/EditMyChannel/EditPersonalPageInfo.jsx";
 import Terms from "./components/ExtrasPage/Terms.jsx";
+import PrivacyPolicy from "./components/ExtrasPage/PrivacyPolicy.jsx";
+import Layout from "./Outlet/Layout.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <Home />
-        </div>
-      </>
-    ),
-  },
-  {
-    path: "/home2",
+    //home route
+    path: "/:username",
     element: (
       <>
         <Header />
@@ -53,103 +46,73 @@ const router = createBrowserRouter([
       </>
     ),
   },
+
   {
-    path: "/channel/videos",
+    //home route
+    path: "/",
     element: (
       <>
         <Header />
         <div className="flex">
           <Aside />
-          <Channel Compo={ChannelVideoListPage} />
+          <VideoListingCardPage />
         </div>
       </>
     ),
   },
+
+  //perticular channel route
   {
-    path: "/channel/playlist",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <Channel Compo={ChannelPlayListVideosPage} />
-        </div>
-      </>
-    ),
+    path: "/channel/:username",
+    element: <Layout />,
+    children: [
+      {
+        path: "videos",
+        element: <Channel Compo={ChannelVideoListPage} />,
+      },
+      {
+        path: "subscribed",
+        element: <Channel Compo={ChannelSubscribedPage} />,
+      },
+      {
+        path: "tweet",
+        element: <Channel Compo={ChannelTweetPage} />,
+      },
+      {
+        path: "playlist",
+        element: <Channel Compo={ChannelPlayListVideosPage} />,
+      },
+    ],
   },
+  //
+
+  //user channel route
   {
-    path: "/channel/tweet",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <Channel Compo={ChannelTweetPage} />
-        </div>
-      </>
-    ),
+    path: "/@/:username",
+    element: <Layout />,
+    children: [
+      {
+        path: "videos",
+        element: <MyChannel Compo={MyChannelVideoPage} />,
+      },
+      {
+        path: "subscribed",
+        element: <MyChannel Compo={MyChannelSubedPage} />,
+      },
+      {
+        path: "tweet",
+        element: <MyChannel Compo={MyChannelTweetPage} />,
+      },
+      {
+        path: "playlist",
+        element: <MyChannel Compo={MyChannelPlaylistPage} />,
+      },
+    ],
   },
+  //
+
   {
-    path: "/channel/subscribed",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <Channel Compo={ChannelSubscribedPage} />
-        </div>
-      </>
-    ),
-  },
-  {
-    path: "/mychannel/videos",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <MyChannel Compo={MyChannelVideoPage} />
-        </div>
-      </>
-    ),
-  },
-  {
-    path: "/mychannel/playlist",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <MyChannel Compo={MyChannelPlaylistPage} />
-        </div>
-      </>
-    ),
-  },
-  {
-    path: "/mychannel/tweet",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <MyChannel Compo={MyChannelTweetPage} />
-        </div>
-      </>
-    ),
-  },
-  {
-    path: "/mychannel/subscribed",
-    element: (
-      <>
-        <Header />
-        <div className="flex">
-          <Aside />
-          <MyChannel Compo={MyChannelSubedPage} />
-        </div>
-      </>
-    ),
-  },
-  {
+    //perticular video route
     path: "/video/:id",
     element: (
       <>
@@ -158,6 +121,8 @@ const router = createBrowserRouter([
       </>
     ),
   },
+
+  //auth routes
   {
     path: "/login",
     element: <AuthLogin />,
@@ -166,13 +131,47 @@ const router = createBrowserRouter([
     path: "/register",
     element: <AuthRegister />,
   },
+  //
+
   {
-    path: "/x",
+    //user like route
+    path: "/:username/home",
     element: <EditPersonalPageInfo />,
   },
+
   {
-    path: "/abc",
+    path: "/:username/like",
     element: <Terms />,
+  },
+
+  {
+    path: "/:username/mycontent",
+    element: <PrivacyPolicy />,
+  },
+
+  {
+    path: "/:username/history",
+    element: <PrivacyPolicy />,
+  },
+
+  {
+    path: "/:username/collections",
+    element: <PrivacyPolicy />,
+  },
+
+  {
+    path: "/:username/subscriptions",
+    element: <PrivacyPolicy />,
+  },
+
+  {
+    path: "/:username/support",
+    element: <PrivacyPolicy />,
+  },
+
+  {
+    path: "/:username/setting",
+    element: <PrivacyPolicy />,
   },
 ]);
 
@@ -180,6 +179,20 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        limit={3}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </Provider>
   </React.StrictMode>
 );

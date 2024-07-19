@@ -1,4 +1,4 @@
-import { isLogedIn, isLogedOut } from "@/features/MyChannel/visibilitySlice.js";
+import { isLogedIn, isLogedOut, setUserrName } from "@/features/MyChannel/visibilitySlice.js";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import axios, { Axios } from "axios";
 import { useEffect } from "react";
 
 function Header() {
+  const navigate = useNavigate()
   const logedin = useSelector((state) => state.vis.logedin);
   const dispatch = useDispatch();
   const [username,setUserName] = useState('')
@@ -20,7 +21,7 @@ function Header() {
         console.log(response.data);
         setUserAvatar(response.data.data.avatar)
         setUserName(response.data.data.userName)
-
+        dispatch(setUserrName(username))
         dispatch(isLogedIn());
       } catch (error) {
         console.log(error);
@@ -39,16 +40,18 @@ function Header() {
 
       console.log(response.data);
       dispatch(isLogedOut());
+      navigate("/")
     } catch (error) {
       console.log(error);
     }
   }
 
-  const navigate = useNavigate();
   return (
     <header class="sticky inset-x-0 top-0 z-50 w-full border-b border-white bg-[#121212] px-4">
       <nav class="mx-auto flex max-w-7xl items-center py-2 ">
-        <div class="fixed mr-4 w-12 shrink-0 sm:w-16">
+        <div onClick={()=>{
+          navigate("/"+username)
+        }} class="fixed mr-4 w-12 shrink-0 sm:w-16">
           <svg
             //style={{width: '100%'}}
             style={{ width: "100%" }}

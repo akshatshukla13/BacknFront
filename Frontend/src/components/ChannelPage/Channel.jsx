@@ -3,9 +3,10 @@ import ChannelPlayListVideosPage from "./ChannelPlayListVideosPage";
 import ChannelTweetPage from "./ChannelTweetPage";
 import ChannelSubscribedPage from "./ChannelSubscribedPage";
 import ChannelVideoListPage from "./ChannelVideoListPage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Channel({ Compo }) {
+  const {username} = useParams()
   const navigate = useNavigate();
 
   return (
@@ -135,7 +136,7 @@ function Channel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/channel/videos");
+                  navigate("/channel/"+username+"/videos");
                 }}
                 class="w-full border-b-2 border-[#ae7aff] bg-white px-3 py-1.5 text-[#ae7aff]"
               >
@@ -145,7 +146,7 @@ function Channel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/channel/playlist");
+                  navigate("/channel/"+username+"/playlist");
                 }}
                 class="w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400"
               >
@@ -155,7 +156,7 @@ function Channel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/channel/tweet");
+                  navigate("/channel/"+username+"/tweet");
                 }}
                 class="  w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400"
               >
@@ -165,7 +166,7 @@ function Channel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/channel/subscribed");
+                  navigate("/channel/"+username+"/subscribed");
                 }}
                 class="  w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400"
               >

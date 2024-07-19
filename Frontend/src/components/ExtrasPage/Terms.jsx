@@ -29,7 +29,7 @@ function Terms() {
 
       {state.isError && <div>Error...</div>}
 
-      {state.data && <div>{state.data.userName}</div>}
+      {state.data && <div>{JSON.stringify(state.data)}</div>}
     </>
   );
 }

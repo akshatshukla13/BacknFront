@@ -338,7 +338,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 
 const getUserChannelProfile = asyncHandler(async (req, res) => {
   const { userName } = req.params;
-
+  console.log(userName);
   if (!userName?.trim()) {
     throw new ApiError(402, "give username please!");
   }
@@ -368,17 +368,13 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
     {
       $addFields: {
         subscribersCount: {
-          $size: "$subscribers",
+          $size: "$Subscribers",
         },
         channelsSubscribedToCount: {
           $size: "$SubscribedTo",
         },
         isSubscribed: {
-          $cond: {
-            if: { $in: [req.user?._id, "$subscribers.subscriber"] },
-            then: true,
-            else: false,
-          },
+          $in: [req.user?._id, "$Subscribers.subscriber"],
         },
       },
     },
@@ -395,6 +391,8 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
       },
     },
   ]);
+  
+  
 
   if (!channel?.length) {
     throw new ApiError(404, "Channel does not exist");

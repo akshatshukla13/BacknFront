@@ -53,7 +53,7 @@ function VideoListingCardPage() {
             <div class="h-10 w-10 shrink-0">
               <img
                 src={"https://images.pexels.com/photos/3532545/pexels-photo-3532545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
-                alt={e.owner}
+                alt={e.owner.user}
                 class="h-full w-full rounded-full"
               />
             </div>
@@ -64,7 +64,7 @@ function VideoListingCardPage() {
               <p class="flex text-sm text-gray-200">
                 {e.views} Views · {e.createdAt}
               </p>
-              <p class="text-sm text-gray-200">{e.owner}</p>
+              <p class="text-sm text-gray-200">{e.owner.userName}</p>
             </div>
           </div>
         </div>

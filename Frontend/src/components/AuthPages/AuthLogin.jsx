@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { isLogedIn } from "@/features/MyChannel/visibilitySlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function AuthLogin() {
   const [email, setEmail] = useState("");
@@ -28,9 +29,11 @@ function AuthLogin() {
       });
       console.log("Login successful:", response.data);
       dispatch(isLogedIn());
-      navigate("/home2");
+      navigate("/"+response.data.data.user.userName);
     } catch (error) {
-      console.error("Error logging in:", error);
+      toast.error("Error logging in:");
+      console.log("Error logging in:", error);
+      
     }
   };
 

@@ -7,18 +7,19 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const getAllVideos = asyncHandler(async (req, res) => {
-  // const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query;
-  //TODO: get all videos based on query, sort, pagination
-  const allVideo = await Video.find({})
+  try {
+    const allVideos = await Video.find({}).populate('owner', 'userName email fullName avatar');
 
-  if(!allVideo){
-    throw new ApiError(401, "not fetched properly");
+    if (!allVideos) {
+      throw new ApiError(401, "Videos not fetched properly");
+    }
+
+    return res.status(201).json(new ApiResponse(200, allVideos, "Videos fetched successfully"));
+  } catch (error) {
+    next(error);
   }
-
-  return res
-    .status(201)
-    .json(new ApiResponse(200, allVideo, "Video fetched Successfully"));
 });
+
 
 const publishAVideo = asyncHandler(async (req, res) => {
   const { title, description } = req.body;
@@ -92,7 +93,7 @@ const getVideoById = asyncHandler(async (req, res) => {
     throw new ApiError(402, "VideoId required");
   }
 
-  const video = await Video.findById(videoId);
+  const video = await Video.findById(videoId).populate('owner', 'userName email fullName avatar');
 
   if (!video) {
     throw new ApiError(401, "Invalid Video Id");

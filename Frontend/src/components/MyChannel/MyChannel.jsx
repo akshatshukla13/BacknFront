@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UploadVideoPopout from "./UploadPopOut/UploadVideoPopout.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleVis } from "@/features/MyChannel/visibilitySlice.js";
 
 function MyChannel({ Compo }) {
+  const { username } = useParams();
+
   const dispatch = useDispatch();
   const visible = useSelector((state) => state.vis.visibility);
 
@@ -75,7 +77,7 @@ function MyChannel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/mychannel/videos");
+                  navigate("/@/" + username + "/videos");
                 }}
                 class="w-full border-b-2 border-[#ae7aff] bg-white px-3 py-1.5 text-[#ae7aff]"
               >
@@ -85,7 +87,7 @@ function MyChannel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/mychannel/playlist");
+                  navigate("/@/" + username + "/playlist");
                 }}
                 class="w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400"
               >
@@ -95,7 +97,7 @@ function MyChannel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/mychannel/tweet");
+                  navigate("/@/" + username + "/tweet");
                 }}
                 class="w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400"
               >
@@ -105,7 +107,7 @@ function MyChannel({ Compo }) {
             <li class="w-full">
               <button
                 onClick={() => {
-                  navigate("/mychannel/subscribed");
+                  navigate("/@/" + username + "/subscribed");
                 }}
                 class="w-full border-b-2 border-transparent px-3 py-1.5 text-gray-400"
               >
