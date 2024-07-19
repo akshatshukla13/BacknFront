@@ -3,10 +3,10 @@ import { Playlist } from "../Models/playlist.model.js";
 import { Video } from "../Models/video.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { User } from "../Models/user.model.js";
 
-const createPlaylist = asyncHandler(async (req, res) => {
+const createPlaylist = AsyncHandler(async (req, res) => {
   const { name, description } = req.body;
 
   //TODO: create playlist
@@ -30,7 +30,7 @@ const createPlaylist = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, playlist, "Playlist created successfully"));
 });
 
-const getUserPlaylists = asyncHandler(async (req, res) => {
+const getUserPlaylists = AsyncHandler(async (req, res) => {
   const { userId } = req.params;
 
   if (!userId) {
@@ -61,7 +61,7 @@ const getUserPlaylists = asyncHandler(async (req, res) => {
   //TODO: get user playlists
 });
 
-const getPlaylistById = asyncHandler(async (req, res) => {
+const getPlaylistById = AsyncHandler(async (req, res) => {
   const { playlistId } = req.params;
   //TODO: get playlist by id
 
@@ -86,7 +86,7 @@ const getPlaylistById = asyncHandler(async (req, res) => {
     );
 });
 
-const addVideoToPlaylist = asyncHandler(async (req, res) => {
+const addVideoToPlaylist = AsyncHandler(async (req, res) => {
   const { playlistId, videoId } = req.params;
 
   if (!playlistId) {
@@ -138,7 +138,7 @@ const addVideoToPlaylist = asyncHandler(async (req, res) => {
     );
 });
 
-const removeVideoFromPlaylist = asyncHandler(async (req, res) => {
+const removeVideoFromPlaylist = AsyncHandler(async (req, res) => {
   const { playlistId, videoId } = req.params;
   // TODO: remove video from playlist
   if (
@@ -167,7 +167,7 @@ const removeVideoFromPlaylist = asyncHandler(async (req, res) => {
   // now check if video exist in playlist and delete the video from the playlist
 });
 
-const deletePlaylist = asyncHandler(async (req, res) => {
+const deletePlaylist = AsyncHandler(async (req, res) => {
   const { playlistId } = req.params;
   // TODO: delete playlist
   if (!(playlistId && isValidObjectId(playlistId))) {
@@ -193,7 +193,7 @@ const deletePlaylist = asyncHandler(async (req, res) => {
     );
 });
 
-const updatePlaylist = asyncHandler(async (req, res) => {
+const updatePlaylist = AsyncHandler(async (req, res) => {
   const { playlistId } = req.params;
   const { name, description } = req.body;
   //TODO: update playlist

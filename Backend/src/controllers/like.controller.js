@@ -5,9 +5,9 @@ import { Tweet } from "../Models/tweet.model.js";
 import { Comment } from "../Models/comment.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 
-const toggleVideoLike = asyncHandler(async (req, res) => {
+const toggleVideoLike = AsyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: toggle like on video
   if (!(videoId && isValidObjectId(videoId))) {
@@ -48,7 +48,7 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
   }
 });
 
-const toggleCommentLike = asyncHandler(async (req, res) => {
+const toggleCommentLike = AsyncHandler(async (req, res) => {
   const { commentId } = req.params;
   //TODO: toggle like on comment
   if (!(commentId && isValidObjectId(commentId))) {
@@ -89,7 +89,7 @@ const toggleCommentLike = asyncHandler(async (req, res) => {
   }
 });
 
-const toggleTweetLike = asyncHandler(async (req, res) => {
+const toggleTweetLike = AsyncHandler(async (req, res) => {
   const { tweetId } = req.params;
   //TODO: toggle like on tweet
   if (!(tweetId && isValidObjectId(tweetId))) {
@@ -130,7 +130,7 @@ const toggleTweetLike = asyncHandler(async (req, res) => {
   }
 });
 
-const getLikedVideos = asyncHandler(async (req, res) => {
+const getLikedVideos = AsyncHandler(async (req, res) => {
   //TODO: get all liked videos
   const likedVideos = await Like.find(
     { likedBy: req.user._id },

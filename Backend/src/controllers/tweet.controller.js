@@ -3,9 +3,9 @@ import { Tweet } from "../Models/tweet.model.js";
 import { User } from "../Models/user.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 
-const createTweet = asyncHandler(async (req, res) => {
+const createTweet = AsyncHandler(async (req, res) => {
   //TODO: create tweet
   const { content } = req.body;
 
@@ -27,7 +27,7 @@ const createTweet = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, tweet, "Tweet published successfully"));
 });
 
-const getUserTweets = asyncHandler(async (req, res) => {
+const getUserTweets = AsyncHandler(async (req, res) => {
   // TODO: get user tweets
   const { userId } = req.params;
 
@@ -50,7 +50,7 @@ const getUserTweets = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, tweets, "tweets fetched successfully"));
 });
 
-const updateTweet = asyncHandler(async (req, res) => {
+const updateTweet = AsyncHandler(async (req, res) => {
   //TODO: update tweet
   const { tweetId } = req.params;
   const { content } = req.body;
@@ -86,7 +86,7 @@ const updateTweet = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, updatedTweet, "TweetUpdatedSuccessFully"));
 });
 
-const deleteTweet = asyncHandler(async (req, res) => {
+const deleteTweet = AsyncHandler(async (req, res) => {
   //TODO: delete tweet
   const { tweetId } = req.params;
 

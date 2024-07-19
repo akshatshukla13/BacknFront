@@ -3,10 +3,10 @@ import { Video } from "../Models/video.model.js";
 import { User } from "../Models/user.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
-const getAllVideos = asyncHandler(async (req, res) => {
+const getAllVideos = AsyncHandler(async (req, res) => {
   try {
     const allVideos = await Video.find({}).populate('owner', 'userName email fullName avatar');
 
@@ -21,7 +21,7 @@ const getAllVideos = asyncHandler(async (req, res) => {
 });
 
 
-const publishAVideo = asyncHandler(async (req, res) => {
+const publishAVideo = AsyncHandler(async (req, res) => {
   const { title, description } = req.body;
   // TODO: get video, upload to cloudinary, create video
 
@@ -86,7 +86,7 @@ const publishAVideo = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, createdVideo, "video uploaded Successfully"));
 });
 
-const getVideoById = asyncHandler(async (req, res) => {
+const getVideoById = AsyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: get video by id
   if (!videoId) {
@@ -104,7 +104,7 @@ const getVideoById = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, video, "Video fetched Successfully"));
 });
 
-const updateVideo = asyncHandler(async (req, res) => {
+const updateVideo = AsyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: update video details like title, description, thumbnail
   if (!videoId) {
@@ -166,7 +166,7 @@ const updateVideo = asyncHandler(async (req, res) => {
     );
 });
 
-const deleteVideo = asyncHandler(async (req, res) => {
+const deleteVideo = AsyncHandler(async (req, res) => {
   const { videoId } = req.params;
   //TODO: delete video
   if (!videoId) {
@@ -195,7 +195,7 @@ const deleteVideo = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, result, "video deleted successfully"));
 });
 
-const togglePublishStatus = asyncHandler(async (req, res) => {
+const togglePublishStatus = AsyncHandler(async (req, res) => {
   const { videoId } = req.params;
 
   if (!videoId) {

@@ -3,9 +3,9 @@ import { User } from "../Models/user.model.js";
 import { Subscription } from "../Models/subscription.model.js";
 import { ApiError } from "../utils/APIerror.js";
 import { ApiResponse } from "../utils/APIresponse.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 
-const toggleSubscription = asyncHandler(async (req, res) => {
+const toggleSubscription = AsyncHandler(async (req, res) => {
   const { channelId } = req.params;
   // TODO: toggle subscription
   if (!(channelId && isValidObjectId(channelId))) {
@@ -50,12 +50,12 @@ const toggleSubscription = asyncHandler(async (req, res) => {
 });
 
 // controller to return subscriber list of a channel
-const getUserChannelSubscribers = asyncHandler(async (req, res) => {
+const getUserChannelSubscribers = AsyncHandler(async (req, res) => {
   const { channelId } = req.params;
 });
 
 // controller to return channel list to which user has subscribed
-const getSubscribedChannels = asyncHandler(async (req, res) => {
+const getSubscribedChannels = AsyncHandler(async (req, res) => {
   const { subscriberId } = req.params;
 });
 
