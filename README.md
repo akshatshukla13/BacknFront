@@ -1,8 +1,8 @@
 STATUS: WORK IN PROGRESS!!!
 
-backnfront.vercel.app/ (client)
+[backnfront.vercel.app/](https://backnfront.vercel.app/) (client)
 
-axat-tube.vercel.app/ (server)
+[axat-tube.vercel.app/](https://axat-tube.vercel.app/) (server)
 
 
 # Video Hosting Website Backend
