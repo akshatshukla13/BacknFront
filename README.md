@@ -1,6 +1,6 @@
 STATUS: WORK IN PROGRESS!!!
 
-[backnfront.vercel.app/](https://backnfront.vercel.app/) (client)
+[backnfront.vercel.app/](https://backnfront.vercel.app/) (server)
 
 
 # Video Hosting Website Backend
