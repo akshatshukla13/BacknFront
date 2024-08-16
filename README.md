@@ -1,6 +1,6 @@
 STATUS: WORK IN PROGRESS!!!
 
-https://backnfront.vercel.app (client)
+backnfront.vercel.app/ (client)
 
 axat-tube.vercel.app/ (server)
 
