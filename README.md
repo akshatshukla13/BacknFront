@@ -1,5 +1,37 @@
 STATUS: WORK IN PROGRESS!!!
 
-This project is a complex backend project that is built with nodejs, expressjs, mongodb, mongoose, jwt, bcrypt, and many more. This project is a complete backend project that has all the features that a backend project should have. We are building a complete video hosting website similar to youtube with all the features like login, signup, upload video, like, dislike, comment, reply, subscribe, unsubscribe, and many more.
+# Video Hosting Website Backend
 
-Project uses all standard practices like JWT, bcrypt, access tokens, refresh Tokens and many more. We have spent a lot of time in building this project and we are sure that you will learn a lot from this project.
+## Overview
+
+This project is a comprehensive backend solution for a video hosting website, similar to YouTube. Built with Node.js, Express.js, MongoDB, and Mongoose, it provides all the essential features for user authentication, video management, and social interactions. The frontend is developed using React, Tailwind CSS, Axios, and Toast for a seamless user experience.
+
+## Features
+
+- **User Authentication**
+  - Login, Signup
+  - JWT-based Authentication (Access & Refresh Tokens)
+  - Password Hashing with bcrypt
+
+- **Video Management**
+  - Upload Video
+  - Like, Dislike
+  - Comment, Reply
+
+- **User Interactions**
+  - Subscribe, Unsubscribe to channels
+  - View counts, likes, and dislikes tracking
+
+- **Standard Practices**
+  - Secure Authentication with JWT
+  - Password Hashing with bcrypt
+  - RESTful API design
+  - Scalable and Maintainable Code Structure
+
+## Frontend
+
+- **React**: For building the user interface.
+- **Tailwind CSS**: For styling the application.
+- **Axios**: For making HTTP requests.
+- **Toast**: For notifications and alerts.
+
